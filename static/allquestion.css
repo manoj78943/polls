@@ -1,0 +1,36 @@
+.mainbody{
+    margin: 10px 40px;
+    background-image: linear-gradient(to right, #DECBA4, #3E5151);}
+
+.questionssection{
+    font-size: larger;
+    font-weight: 600;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-stretch: extra-expanded;
+}
+.heading{
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 800;
+    font-family: Arial, Helvetica, sans-serif;
+    font-stretch: extra-expanded;
+}
+.submenu_heading{
+    width: 60%;
+    margin: auto;
+}
+.message{
+    display: none;
+    position: absolute;
+    background-color: #35ea58;
+    width: 20rem;
+    right: 5%;
+    bottom: 5%;
+    text-align: center;
+    color: white;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: 40px;
+    border-radius: 5px;
+}

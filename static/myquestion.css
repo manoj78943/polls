@@ -1,0 +1,35 @@
+.mainbody{
+    margin: 10px 40px;
+    background-image: linear-gradient(to right, #DECBA4, #3E5151);}
+
+.questionssection{
+    font-size: larger;
+    font-weight: 600;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-stretch: extra-expanded;
+}
+.heading{
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 800;
+    font-family: Arial, Helvetica, sans-serif;
+    font-stretch: extra-expanded;
+}
+.submenu_heading{
+    width: 60%;
+    margin: auto;
+}
+
+.viewanswer{
+    margin-right: 30px;
+    background-color: rgb(94, 238, 38);
+    width: 140px;
+    height: 30px;
+    border: 2px solid rgb(94, 238, 38);
+    border-radius: 4px;
+    color: white;
+}
+
+span{
+    color: greenyellow;
+}

@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'home.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+		<h1 class="logo"><a href="{% url 'home' %}">Manoj Prajapati</a></h1>
+      <ul class="main-nav">
+          <li><a href="{% url 'askQuestion' %}">Ask Questions</a></li>
+          <li><a href="{% url 'allQuestion' %}">All Questions</a></li>
+          <li><a href="{% url 'myQuestion' %}">Your Questions</a></li>
+          <li><a href="{% url 'profile' %}">Profile</a></li>
+      </ul>
+	</header>
+  <div class="contents">
+    <ul list-style="circle">
+      <li>This is a poll management website</li>
+      <li>It has full login, logout, signup features. I have used django authentication for this purpose.</li>
+      <li>Any user can post his/her questions upto 5 per day.</li>
+      <li>User can see all questions of all user in All questions section</li>
+      <li>User can give their response to any question and update it</li>
+      <li>In My questions section, User can see his/her all questions can view the latest response which got highest votes.</li>
+      <li>You can see your profile, in Profile section. Here, you can see your name, phone number, email, which is not editable.</li>
+      <li>All questions are only valid for 24 hours.</li>
+    </ul>
+  </div>
+  </body>
+</html>

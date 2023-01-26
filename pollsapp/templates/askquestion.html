@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'home.css' %}" />
+    <link rel="stylesheet" href="{% static 'askquestion.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+      <h1 class="logo"><a href="{% url 'home' %}">Manoj Prajapati</a></h1>
+      <ul class="main-nav">
+        <li><a href="{% url 'askQuestion' %}">Ask Questions</a></li>
+        <li><a href="{% url 'allQuestion' %}">All Questions</a></li>
+        <li><a href="{% url 'myQuestion' %}">Your Questions</a></li>
+        <li><a href="{% url 'profile' %}">Profile</a></li>
+      </ul>
+    </header>
+
+    <div class="mainbody">
+      <div class="yourquestionsheading">Your Question</div>
+      <form action="{% url 'askQuestion' %}" method="POST">
+        {% csrf_token %}
+        <div class="questionsection">
+          <div class="erty">Ask Question</div>
+          <div>
+            <input type="text" class="qwerty" name="question" placeholder="Ask your question" />
+          </div>
+
+          <div class="erty">All four options</div>
+
+          <div>
+            <input type="text" placeholder="First option" name="first_option" /><br />
+            <input type="text" placeholder="Second option" name="second_option" /><br />
+            <input type="text" placeholder="Third option" name="third_option" /><br />
+            <input type="text" placeholder="Fourth option" name="fourth_option" /><br />
+          </div>
+          <div class="submitbutton">
+            <button type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    {% if message %}
+    <div id="message" class="message">{{message}}</div>
+    {% endif %}
+
+    <script>
+      $(document).ready(function () {
+        $("#message").fadeIn("slow", function () {
+          $("#message").delay(3000).fadeOut();
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'home.css' %}" />
+    <link rel="stylesheet" href="{% static 'allquestion.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+      <h1 class="logo"><a href="{% url 'home' %}">Manoj Prajapati</a></h1>
+      <ul class="main-nav">
+        <li><a href="{% url 'askQuestion' %}">Ask Questions</a></li>
+        <li><a href="{% url 'allQuestion' %}">All Questions</a></li>
+        <li><a href="{% url 'myQuestion' %}">Your Questions</a></li>
+        <li><a href="{% url 'profile' %}">Profile</a></li>
+      </ul>
+    </header>
+
+    <div class="mainbody">
+      <div class="heading">All Questions</div>
+      <br />
+      <br />
+      <div class="submenu_heading">
+        {% if allquestions %} {% for i in allquestions %}
+        <div class="questionssection">{{forloop.counter}}.&nbsp;{{i.question}} ?</div>
+        <br />
+        <div>
+          <input type="radio" name="{{i.id}}" onClick="markanswer({{i.id}},this.value)" value="{{i.first_option}}" />{{i.first_option}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio" name="{{i.id}}" onClick="markanswer({{i.id}},this.value)" value="{{i.second_option}}" />{{i.second_option}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio" name="{{i.id}}" onClick="markanswer({{i.id}},this.value)" value="{{i.third_option}}" />{{i.third_option}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio" name="{{i.id}}" onClick="markanswer({{i.id}},this.value)" value="{{i.fourth_option}}" />{{i.fourth_option}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <br /><br />
+        {% endfor %}
+        {% else %}
+        <div>
+          Oops !! No questions here
+        </div>
+        {% endif %}
+      </div>
+      {% csrf_token %}
+    </div>
+    
+    
+
+    <script>
+      function markanswer(id,answer){
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        $.ajax({
+          type:'POST',
+          url: '{% url "markanswer" %}',
+          headers: {'X-CSRFToken': csrftoken },
+          data:{
+            'answer': answer,
+            'id' : id
+          },
+          success:function (response){
+            alert(response.success)
+          }
+        })
+      }
+    </script>
+  </body>
+</html>

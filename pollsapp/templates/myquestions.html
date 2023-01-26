@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'home.css' %}" />
+    <link rel="stylesheet" href="{% static 'myquestion.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+      <h1 class="logo"><a href="{% url 'home' %}">Manoj Prajapati</a></h1>
+      <ul class="main-nav">
+        <li><a href="{% url 'askQuestion' %}">Ask Questions</a></li>
+        <li><a href="{% url 'allQuestion' %}">All Questions</a></li>
+        <li><a href="{% url 'myQuestion' %}">Your Questions</a></li>
+        <li><a href="{% url 'profile' %}">Profile</a></li>
+      </ul>
+    </header>
+
+    <div class="mainbody">
+      <div class="heading">My Questions</div>
+      <br />
+      <br />
+      <div class="submenu_heading">
+        {% if myquestions %} {% for i in myquestions %}
+        <div class="questionssection">{{forloop.counter}}.&nbsp;{{i.question}} ?</div>
+        <br />
+        <div>
+          <input type="radio" name="{{i.id}}" />{{i.first_option}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio" name="{{i.id}}" />{{i.second_option}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio" name="{{i.id}}" />{{i.third_option}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio" name="{{i.id}}" />{{i.fourth_option}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <br />
+        <button class="viewanswer" onClick="getAnswer({{i.id}})">
+          View Answer
+        </button>
+        <span id="{{i.id}}"></span>
+        <br />
+        <br />
+        {% endfor %}
+        {% else %}
+        <div>
+          You haven't posted any questions
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <script>
+      var answer_respons;
+      $.ajax({
+        type:'GET',
+        url: '{% url "getanswer" %}',
+        success:function (response){
+          console.log(response.answers_response)
+          answer_respons = response
+        }
+      })
+      function getAnswer(id){
+        var ans = answer_respons.answers_response[id]
+        console.log(ans)
+        document.getElementById(id).innerHTML = ans
+      }
+    </script>
+  </body>
+</html>

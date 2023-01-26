@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'profile.css' %}" />
+    <link rel="stylesheet" href="{% static 'home.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+      <h1 class="logo"><a href="{% url 'home' %}">Manoj Prajapati</a></h1>
+      <ul class="main-nav">
+        <li><a href="{% url 'askQuestion' %}">Ask Questions</a></li>
+        <li><a href="{% url 'allQuestion' %}">All Questions</a></li>
+        <li><a href="{% url 'myQuestion' %}">Your Questions</a></li>
+        <li><a href="{% url 'profile' %}">Profile</a></li>
+      </ul>
+    </header>
+    <div class="container">
+      <div class="card">
+        <img
+          src="https://lh3.googleusercontent.com/ytP9VP86DItizVX2YNA-xTYzV09IS7rh4WexVp7eilIcfHmm74B7odbcwD5DTXmL0PF42i2wnRKSFPBHlmSjCblWHDCD2oD1oaM1CGFcSd48VBKJfsCi4bS170PKxGwji8CPmehwPw=w200-h247-no"
+          alt="Person"
+          class="card__image"
+        />
+        <p class="card__name">{{name}}</p>
+        <div class="grid-container">
+          <div class="grid-child-posts">{{asked}}&nbsp;Asked</div>
+
+          <div class="grid-child-followers">{{answered}}&nbsp;Answered</div>
+        </div>
+        <ul class="social-icons">
+          <li>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-codepen"></i></a>
+          </li>
+        </ul>
+        <button class="btn draw-border">{{user.email}}</button>
+        <button class="btn draw-border">{{phone}}</button>
+        <a href="{% url 'logout' %}"><p style="color:white;">Logout</p></a>
+      </div>
+    </div>
+  </body>
+</html>
